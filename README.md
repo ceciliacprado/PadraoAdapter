@@ -28,3 +28,7 @@ Isso garante:
 - **Flexibilidade:** fácil adicionar novas redes no futuro.  
 - **Desacoplamento:** o código principal não depende de APIs específicas.  
 - **Manutenibilidade:** mudanças em uma plataforma não afetam as outras.
+
+Diagrama de classes: 
+<img width="952" height="726" alt="image" src="https://github.com/user-attachments/assets/d942c4af-8fb1-4297-a303-ba631f2d37be" />
+
