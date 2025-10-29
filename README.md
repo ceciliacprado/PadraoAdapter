@@ -1,25 +1,30 @@
-# Sistema de Integração de APIs de Mídia Social (Adapter Pattern) - Exemplo em Java
+# 🧩 Sistema de Integração de APIs de Mídia Social (Padrão Adapter)
 
-## Objetivo
-Demonstrar o padrão Adapter para unificar integrações com múltiplas redes sociais (Twitter, Instagram, LinkedIn, TikTok).
+## 🎯 Objetivo
+Este projeto tem como objetivo demonstrar o uso do **Padrão de Projeto Adapter** em Java, integrando múltiplas redes sociais (Twitter, Instagram, LinkedIn e TikTok) através de uma **interface unificada**.
 
-## O que está implementado
-- Models: Conteudo, Publicacao, Estatisticas
-- Interface unificada: `GerenciadorMidiaSocial`
-- `SocialMediaAdapter` + Adapters simulados para Twitter, Instagram, LinkedIn e TikTok
-- `SocialMediaResponse` — resposta unificada (sucesso/falha + dados)
-- Configuração via `config.properties`
-- Demo em `MainDemo`
+O sistema simula a autenticação, publicação e obtenção de estatísticas de diferentes plataformas, abstraindo as diferenças entre as APIs e fornecendo uma camada única de comunicação.
 
-> **Nota:** A parte de Factory / Strategy não foi implementada conforme instrução (será feita em sala). Deixei pontos onde a Factory seria integrada.
+---
 
-## Como rodar
-1. Configurar `src/main/resources/config.properties` com chaves.
-2. Build com Maven/Gradle.
-3. `java -cp target/yourjar.jar com.agency.social.MainDemo`
+## 🏗️ Arquitetura
+O projeto é composto por:
 
-## Extensões possíveis
-- Implementar chamadas reais HTTP para cada adapter (usar HttpClient/RestTemplate).
-- Implementar Factory para criar adapters dinamicamente a partir de config.
-- Agendamento real com fila/cron (Quartz / ScheduledExecutorService).
-- Persistência de publicações (BD) e dashboard de estatísticas.
+- **Interface `SocialMediaAdapter`**: define as operações padrão para todas as redes sociais.  
+- **Adapters Concretos** (`TwitterAdapter`, `InstagramAdapter`, `LinkedInAdapter`, `TikTokAdapter`): implementam a interface adaptando cada API.
+- **`GerenciadorMidiaSocial`**: classe que representa a interface unificada para interação com as redes.
+- **Modelos (`Conteudo`, `SocialMediaResponse`)**: classes simples que armazenam informações de publicações e estatísticas.
+- **`MainDemo`**: classe principal que demonstra o uso do sistema.
+
+---
+
+## 💡 Padrão de Projeto Utilizado
+
+### 🔹 Adapter
+O **Adapter** permite que classes com interfaces diferentes trabalhem juntas.  
+No contexto deste projeto, cada rede social possui sua própria forma de autenticação e publicação, mas o `Adapter` faz a tradução dessas diferenças para uma **interface comum (`SocialMediaAdapter`)**.
+
+Isso garante:
+- **Flexibilidade:** fácil adicionar novas redes no futuro.  
+- **Desacoplamento:** o código principal não depende de APIs específicas.  
+- **Manutenibilidade:** mudanças em uma plataforma não afetam as outras.
